@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html la2 ng="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <title>Memory Game | javascript</title>
+            <link rel="stylesheet" type="text/css" href="style.css">
+     
+    </head>
+    <body>
+        <div class="container">
+            <h2>Memory Game</h2>
+            <div class="game"></div>
+            <button class="reset"><a href="./pair.aa.html" style="text-decoration: none; color:white">Reset Game</a></button>
+            <div class="message"></div>
+        </div>
+        <script>
+           
+
+
+            const emojis = ["😊","😊","🤬","🤬","⭐","⭐","💙","💙","🤣","🤣","😅","😅","🎈","🎈","🎁","🎁"];
+            function addEmojis(){
+                var shuf_emojis = emojis.sort(() => (Math.random() > 0.5) ? 2 : -1);
+          //  let myGame = document.getElementById("myGame");
+            //console.log("Hello World");
+            var random_emojis=[];
+                for ( var i=0; i<emojis.length; i++){
+                let outerBox = document.createElement('div')
+                let box = document.createElement('div')
+                box.className='item';
+                box.id = 'item'+i;
+                outerBox.className = 'outerBox'
+                box.innerHTML=shuf_emojis[i]
+                outerBox.appendChild(box);
+
+                box.onclick = function(){
+                    this.classList.add('boxOpen')
+                    setTimeout(function(){
+                     if(document.querySelectorAll('.boxOpen').length> 1){
+                        if(document.querySelectorAll('.boxOpen')[0].innerHTML==document.querySelectorAll('.boxOpen')[1].innerHTML){
+                            document.querySelectorAll(".message")[0].innerHTML = "You won!!!";
+                        } else{
+                            document.querySelectorAll('.boxOpen')[1].classList.remove('boxOpen')
+                            document.querySelectorAll('.boxOpen')[0].classList.remove('boxOpen')
+                        }
+                     }
+                    },500)
+                }
+                document.querySelector('.game').appendChild(outerBox);
+            }
+            }
+            addEmojis();
+
+
+            let round = 0;
+            let first;
+            function myFun1(event){
+                console.log(event);
+                console.log("Hello");
+            }
+
+        </script>
+       
+    </body>
+</html>
